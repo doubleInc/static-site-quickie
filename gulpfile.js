@@ -37,11 +37,11 @@ async function scripts(done) {
     plugins: [
       resolve(), // tells Rollup how to find date-fns in node_modules
       babel({
-        babelHelpers: "bundled",
+        babelHelpers: "bundled", // include babel helpers in bundle
         exclude: "node_modules/**", // only transpile our source code
       }),
-      production && terser(), // minify, but only in production
       commonjs(),
+      production && terser(), // minify, but only in production
     ],
   });
 
