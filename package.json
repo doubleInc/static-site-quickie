@@ -12,6 +12,10 @@
   "browserslist": "defaults",
   "dependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@babel/plugin-proposal-private-methods": "^7.8.3",
     "@babel/preset-env": "^7.9.6",
     "@rollup/plugin-babel": "^5.0.0",
@@ -19,6 +23,7 @@
     "@rollup/plugin-node-resolve": "^7.1.3",
     "fabricator-assemble": "^1.4.0",
     "gulp": "^4.0.2",
+    "gulp-imagemin": "^7.1.0",
     "gulp-postcss": "^8.0.0",
     "gulp-run-command": "0.0.10",
     "lite-server": "^2.5.4",

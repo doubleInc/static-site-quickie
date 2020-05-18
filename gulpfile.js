@@ -5,6 +5,7 @@ const postcssPresetEnv = require("postcss-preset-env");
 const assemble = require("fabricator-assemble");
 const rollup = require("rollup");
 const run = require("gulp-run-command").default;
+const imagemin = require("gulp-imagemin");
 const resolve = require("@rollup/plugin-node-resolve");
 const commonjs = require("@rollup/plugin-commonjs");
 const { babel } = require("@rollup/plugin-babel");
@@ -77,14 +78,27 @@ function html(done) {
   done();
 }
 
+// image files
+function images(done) {
+  return src("./src/assets/images/**/*.{jpeg,jpg,png,gif}")
+    .pipe(
+      imagemin([
+        imagemin.mozjpeg({ quality: 75, progressive: true }),
+        imagemin.optipng({ optimizationLevel: 5 }),
+      ])
+    )
+    .pipe(dest("./dist/assets/images"));
+}
+
 // Watch files
 function watchFiles() {
   watch("./src/**/*.css", css);
   watch("./src/**/*.html", html);
   watch("./src/**/*.js", scripts);
+  watch("./src/assets/images/**/*.{jpeg,jpg,png,gif}", images);
 }
 
-const build = series(css, html, scripts);
+const build = series(css, html, scripts, images);
 const watchTask = parallel(watchFiles, run("lite-server"));
 
 exports.default = series(build, watchTask);
